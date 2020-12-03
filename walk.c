@@ -38,10 +38,10 @@ int walk( char path[], summary *S ) {
             if ( strcmp(pDirent->d_name, "..") == 0) {
                 continue;
             }
+            
+            cwd = (char*)malloc( sizeof(char) + strlen(pDirent->d_name) + strlen(path) + 1);
 
-            cwd = (char*)malloc( 1 + sizeof(char) + strlen(pDirent->d_name) + strlen(path) );
-
-            strcpy(cwd, path);
+            strncpy(cwd, path, strlen(path) + 1);
             strcat(cwd, pDirent->d_name);
    
             if (pDirent->d_type == FILE) {
